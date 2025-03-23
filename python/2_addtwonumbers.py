@@ -26,6 +26,7 @@ class _ (Helpers):
             (newval, rem) = (newval - 10, 1) if newval>9 else (newval, 0)
             out.val = newval
         return outout.next
+    
     def sol2(self, l1, l2):
         rem = 0
         res = ListNode()

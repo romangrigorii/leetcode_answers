@@ -1,0 +1,4 @@
+*/other/
+*/.gitignore
+*/C/functions/compiled
+__pycache__/
