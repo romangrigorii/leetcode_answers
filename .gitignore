@@ -2,3 +2,8 @@
 */.gitignore
 */C/functions/compiled/
 __pycache__/
+*/bazel-bin/
+*/bazel-cpp/
+*/bazel-out/
+*/bazel-testlogs/
+*/MODULE.bazel.lock
