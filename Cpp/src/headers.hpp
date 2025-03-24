@@ -1,2 +1,4 @@
+#include <vector>
+#include <map>
 
-int* twoSum(int* nums, int numsSize, int target, int* returnSize);
+std::vector<int> twoSum(std::vector<int>& nums, int target);
