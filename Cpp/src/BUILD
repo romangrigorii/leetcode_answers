@@ -10,7 +10,10 @@ cc_library(
 
 cc_library(
     name = "functions",
-    srcs = ["1_twosum.cpp"],
+    srcs = [
+        "1_twosum.cpp",
+        "2_addtwonumbers.cpp",
+    ],
     hdrs = ["headers.hpp"],
     deps = [
         ":helpers"
@@ -20,7 +23,10 @@ cc_library(
 cc_test(
     name = "test_1_twosum",
     size = "medium",
-    srcs = ["tests/test_1_twosum.cpp"],
+    srcs = [
+        "tests/test_1_twosum.cpp",
+        "tests/test_2_addtwonumbers.cpp",
+    ],
     deps = [
         "@googletest//:gtest",
         "@googletest//:gtest_main",
