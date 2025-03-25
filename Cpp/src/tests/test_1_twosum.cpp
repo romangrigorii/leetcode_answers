@@ -8,7 +8,6 @@ using namespace::std;
 
 
 TEST(TestSuite, TwoSum) { 
-    Helpers<int> helpers;
     int target;
     vector<int> nums;
     vector<int> result_exp;
@@ -19,10 +18,10 @@ TEST(TestSuite, TwoSum) {
     target = 4;
     result_act = twoSum(nums, target);
     result_exp = {0, 2}; 
-    helpers.COMPARE_VECS(result_act, result_exp);
+    COMPARE_VECS_INT(result_act, result_exp);
     
     target = 8;
     result_act = twoSum(nums, target);
     result_exp = {1, 2}; 
-    helpers.COMPARE_VECS(result_act, result_exp);
+    COMPARE_VECS_INT(result_act, result_exp);
 }

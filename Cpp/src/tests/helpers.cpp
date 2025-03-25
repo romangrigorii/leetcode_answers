@@ -4,8 +4,12 @@
 #include "helpers.hpp"
 #include <algorithm>
 #include <iostream>
+#include <string>
 
-bool comp(int a, int b) {
+using namespace::std;
+
+template <typename T>
+bool comp(T a, T b) {
     return a > b;
 }
 
@@ -14,15 +18,24 @@ void Helpers<T>::printThis(T val){
     std::cout << val << std::endl;
 }
 
-template <typename T>
-void Helpers<T>::COMPARE_VECS(std::vector<T>& vec1, std::vector<T>& vec2){
+void COMPARE_VECS_INT(vector<int>& vec1, vector<int>& vec2){
     EXPECT_EQ(vec1.size(), vec2.size());
-    sort(vec1.begin(), vec1.end(), comp);
-    sort(vec2.begin(), vec2.end(), comp);
+    sort(vec1.begin(), vec1.end(), comp<int>);
+    sort(vec2.begin(), vec2.end(), comp<int>);
     for (int i = 0; i<vec1.size(); i++){
-        EXPECT_EQ(vec1[i], vec2[i]);
+        EXPECT_TRUE(vec1[i]==vec2[i]);
     }
 }
+
+void COMPARE_VECS_STR(vector<string>& vec1, vector<string>& vec2){
+    EXPECT_EQ(vec1.size(), vec2.size());
+    sort(vec1.begin(), vec1.end(), comp<string>);
+    sort(vec2.begin(), vec2.end(), comp<string>);
+    for (int i = 0; i<vec1.size(); i++){
+        EXPECT_TRUE(vec1[i]==vec2[i]);
+    }
+}
+
 
 template <typename T>
 void Helpers<T>::COMPARE_LN(ListNode *l1, ListNode *l2){
@@ -37,7 +50,7 @@ void Helpers<T>::COMPARE_LN(ListNode *l1, ListNode *l2){
 
 template class Helpers<int>;
 
-ListNode* vecToLN(std::vector<int> & vec){
+ListNode* vecToLN(vector<int>& vec){
     ListNode *node = new ListNode();
     auto node_copy = node;
     for (int i = 0; i < vec.size(); i++){
