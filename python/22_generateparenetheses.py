@@ -24,25 +24,7 @@ class _ (Helpers):
             s.append((x+")", l, r+1))
         return res
     
-    def sol2(self, n: int) -> List[str]:
-        def backtrack(parenthesis, opened, closed):
-            '''
-            This is a dfs solution
-            '''
-            # save solution
-            if len(parenthesis) == 2*n:
-                res.append(parenthesis)
-            # add opened parenthesis
-            if opened < n:
-                backtrack(parenthesis + "(", opened+1, closed)
-            # add closed parenthesis
-            if closed < opened:
-                backtrack(parenthesis + ")", opened, closed+1)
-        res = []
-        backtrack("", 0, 0)
-        return res
-
-    def sol3(self, n: int) -> List[int]:
+    def sol2(self, n: int) -> List[int]:
         '''
         This is dfs solution
         '''
@@ -58,7 +40,7 @@ class _ (Helpers):
 
 class test(unittest.TestCase, _ , Helpers):
     def test_(self):       
-        for sol in [self.sol1, self.sol2, self.sol3]:
+        for sol in [self.sol1, self.sol2]:
             self.assertTrue(self.equal_lists(sol(n = 1),  ["()"]))
             self.assertTrue(self.equal_lists(sol(n = 2 ),  ["()()", "(())"]))
             self.assertTrue(self.equal_lists(sol(n = 3), ['()()()', '()(())', '(())()', '(()())', '((()))']))
