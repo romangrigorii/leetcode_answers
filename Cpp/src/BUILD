@@ -13,6 +13,8 @@ cc_library(
     srcs = [
         "1_twosum.cpp",
         "2_addtwonumbers.cpp",
+        "3_longestsubstring.cpp",
+        "4_medianoftwosortedarrays.cpp",
     ],
     hdrs = ["headers.hpp"],
     deps = [
@@ -21,11 +23,13 @@ cc_library(
 )
 
 cc_test(
-    name = "test_1_twosum",
+    name = "test_suite",
     size = "medium",
     srcs = [
         "tests/test_1_twosum.cpp",
         "tests/test_2_addtwonumbers.cpp",
+        "tests/test_3_longestsubstring.cpp",
+        "tests/test_4_medianoftwosortedarrays.cpp",
     ],
     deps = [
         "@googletest//:gtest",
