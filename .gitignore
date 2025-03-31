@@ -7,3 +7,4 @@ __pycache__/
 */bazel-out/
 */bazel-testlogs/
 */MODULE.bazel.lock
+.idea
