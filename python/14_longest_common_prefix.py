@@ -10,6 +10,11 @@ class _ (Helpers):
     If there is no common prefix, return an empty string "".
     '''
     def sol1(self, strs: List[str]) -> str:
+        '''
+        The reasoning behind this solution is that we start with the first word in the list,
+        and then trim to have the starting characters match the starting charatcers of the following word.
+        Those starting chratacters than propagate to the next word, and so on, each time being trimmed. 
+        '''
         if not strs: return ""
         lc = strs[0]
         for i in range(1,len(strs)):            

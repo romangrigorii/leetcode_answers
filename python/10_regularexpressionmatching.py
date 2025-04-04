@@ -52,6 +52,7 @@ class test(unittest.TestCase, _ , Helpers):
             self.assertEqual(sol("aa","a"), False)
             self.assertEqual(sol("aa","a*"), True)
             self.assertEqual(sol("ab",".*"), True)
+            self.assertEqual(sol("mississippi","mis*is*p*."), False)
 
 if __name__ == "__main__":
     unittest.main()

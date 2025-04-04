@@ -7,17 +7,13 @@
 
 using namespace::std;
 
+void test(string str, int exp){
+    int res = lengthOfLongestSubstring(str);
+    EXPECT_EQ(res, exp);
+}
 
 TEST(TestSuite, LengthOfLongestSubstring) { 
-    int res;
-    int exp;
-    res = lengthOfLongestSubstring("abcabcbb");
-    exp = 3;
-    EXPECT_EQ(res, exp);
-    res = lengthOfLongestSubstring("bbbbb");
-    exp = 1;
-    EXPECT_EQ(res, exp);
-    res = lengthOfLongestSubstring("pwwkew");
-    exp = 3;
-    EXPECT_EQ(res, exp);
+    test("abcabcbb", 3);
+    test("bbbbb", 1);
+    test("pwwkew", 3);
 }

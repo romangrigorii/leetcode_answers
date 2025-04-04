@@ -48,7 +48,7 @@ class _ (Helpers):
         if i == 0:
             nums.reverse()
             return nums
-        # 2. If it's not zero then we'll find the first number grater then nums[i-1] starting from end
+        # 2. If it's not zero then we'll find the first number greater than nums[i-1] starting from end
         while nums[j] <= nums[i-1]:
             j -= 1
         # Now out pointer is pointing at two different positions
