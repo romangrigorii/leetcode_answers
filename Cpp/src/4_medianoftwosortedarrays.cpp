@@ -24,8 +24,8 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
     medIdx -= even;
     int iter1 = 0;
     int iter2 = 0;
-    int res1 = 0;
-    int res2 = 0;
+    double res1 = 0;
+    double res2 = 0;
 
     while ((iter1 + iter2) <= medIdx+even){
         res1 = res2;
@@ -44,7 +44,7 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         }
     }
     if (even){
-        return ((double) res2+res1)/2;
+        return (res2+res1)/2;
     } else {
         return res2;
     }

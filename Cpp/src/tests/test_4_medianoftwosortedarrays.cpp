@@ -7,22 +7,12 @@
 
 using namespace::std;
 
+void test(vector<int> vec1, vector<int> vec2, double exp){
+    double act = findMedianSortedArrays(vec1, vec2);
+    EXPECT_DOUBLE_EQ(act, exp);
+}
 
-TEST(TestSuite, FindMedianSortedArrays) {
-    std::vector<int> vec1;
-    std::vector<int> vec2;
-    int res;
-    int exp;
-
-    vec1 = {1,3};
-    vec2 = {2};
-    res = findMedianSortedArrays(vec1, vec2);
-    exp = 2.0;
-    EXPECT_DOUBLE_EQ(res, exp);
-
-    vec1 = {1,2};
-    vec2 = {3,4};
-    res = findMedianSortedArrays(vec1, vec2);
-    exp = 2.5;
-    EXPECT_DOUBLE_EQ(res, exp);
+TEST(TestSuite, MedianOfSortedArrays) {
+    test({1,3}, {2}, 2.0);
+    test({1,2}, {3,4}, 2.5);
 }
