@@ -4,8 +4,8 @@ from helpers import *
 
 class _(Helpers) :
     '''
-    139: https://leetcode.com/problems/word-break
-    Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+    148: https://leetcode.com/problems/sort-list/
+    Given the head of a linked list, return the list after sorting it in ascending order.
     '''
     def sol1(self, head: Optional[ListNode]) -> bool:
         q = []
