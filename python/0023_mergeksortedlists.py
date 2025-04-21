@@ -24,35 +24,32 @@ class _ (Helpers):
         return out.next
 
     def sol2(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        st = 0
-        lists.sort(key = lambda x: x.val if x else -1) # sort by first value to start
-        while not lists[st]: st += 1 # skip the None elemenets at the start
-        if st == len(lists): return None
-        out = ListNode()
-        qh = out
+        def mergeList(l1, l2):
+            dummy = ListNode()
+            head = dummy
+            while l1 and l2:
+                if l1.val < l2.val:
+                    head.next = ListNode(l1.val)
+                    l1 = l1.next
+                else:
+                    head.next = ListNode(l2.val)
+                    l2 = l2.next
+                head = head.next
+            if l1:
+                head.next = l1
+            if l2:
+                head.next = l2
+            return dummy.next
         
-        def place(lists, st, en):
-            start = st
-            st += 1
-            if comp.val<lists[st.val]: return lists
-            mid = st
-            while st<en:
-                mid = (st+en)//2
-                if comp.val < lists[mid].val: st = mid + 1
-                else: en = mid - 1
-            return lists[:st] + lists[st+1:mid] + [comp] + lists[mid:]
-        
-        while st < len(lists)-1:
-            new = ListNode(lists[st].val, None)
-            out.next = new
-            out = out.next
-            lists[st] = lists[st].next
-            if lists[st]:
-                lists = place(lists, st, len(lists)-1)
-            else:
-                st+=1
-
-        return qh.next
+        while len(lists) > 1:
+            length = len(lists)
+            temp = []
+            for l in range(0, length, 2):
+                l1 = lists[l]
+                l2 = lists[l+1] if l+1 < length else None
+                temp.append(mergeList(l1, l2))
+            lists = temp
+        return lists[0] if lists else None
 
  
 class test(unittest.TestCase, _ , Helpers):

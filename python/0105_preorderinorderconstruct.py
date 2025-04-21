@@ -48,8 +48,8 @@ class _(Helpers) :
     
 class test(unittest.TestCase, _, Helpers):
     def test_(self):    
-        for sol in [self.sol1, self.sol2, self.sol3]:
-            s = Tree(sol(preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]))
+        for sol in [self.sol1, self.sol2]:
+            s = sol(preorder = [3,9,20,15,7], inorder = [9,3,15,20,7])
             s.print_tree_stack()
             self.assertEqual(self.tree_convb(sol(preorder = [3,9,20,15,7], inorder = [9,3,15,20,7])), [3,9,20,None,None,15,7])
             

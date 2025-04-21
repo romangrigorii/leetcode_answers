@@ -32,11 +32,9 @@ class _(Helpers) :
 class test(unittest.TestCase, _, Helpers):
     def test_(self):    
         for sol in [self.sol1, self.sol2]:
-            s = Tree(sol(inorder=[9,3,15,20,7], postorder = [9,15,7,20,3]))
+            s = sol(inorder=[9,3,15,20,7], postorder = [9,15,7,20,3])
             s.print_tree_stack()
-            self.assertEqual(self.tree_convb(s.root), [3,9,20,None,None,15,7])
-            
-
+            self.assertEqual(self.tree_convb(s), [3,9,20,None,None,15,7])  
 
 if __name__ == "__main__":
     unittest.main()

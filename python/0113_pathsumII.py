@@ -9,23 +9,16 @@ class _(Helpers) :
     such that adding up all the values along the path equals targetSum. A leaf is a node with no children.
     '''
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        out = []
-        def helper(root, cur, targetSum):
-            if not root or root.val == None: return
-            if not root.left and not root.right and root.val == targetSum: 
-                out.append(cur + [root.val])
-                return
-            helper(root.left, cur + [root.val], targetSum - root.val)
-            helper(root.right, cur + [root.val], targetSum - root.val)
-        helper(root, [], targetSum)
-        return out
+        if not root: return False
+        if not root.left and not root.right and root.val == targetSum: return True        
+        return self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val)
     
 class test(unittest.TestCase, _, Helpers):
     def test_(self):    
         for sol in [self.hasPathSum]:
             s = self.tree_convf([5,4,8,11,None,13,4,7,2,None,None,None,None,1])
             s.print_tree_stack()
-            self.assertEqual(sol(s, 22), [[5,4,11,2],[5,8,4,5]])
+            self.assertTrue(sol(s, 22))
 
 
 if __name__ == "__main__":

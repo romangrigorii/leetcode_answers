@@ -23,9 +23,9 @@ class test(unittest.TestCase, _, Helpers):
     def test_(self):    
         for sol in [self.sol1]:
             self.assertEqual(sol(self.tree_convf([3,9,20,None,None,15,7])), True)
-            s = Tree(self.tree_convf([1,2,2,3,None,None,3,4,None,None,4]))
+            s = self.tree_convf([1,2,2,3,None,None,3,4,None,None,4])
             s.print_tree_stack()            
-            self.assertEqual(sol(s.root), True)
+            self.assertEqual(sol(s), False)
 
 
 if __name__ == "__main__":

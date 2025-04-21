@@ -34,7 +34,9 @@ class _(Helpers) :
             wordList -= set(newlayer.keys()) # these are the words we can reach at a given layer
             # we eliminate the words at current layer because we wouldn't want to circle back to these words again
             layer = newlayer
-        return res
+        if len(res)>0:
+            return min(len(q) for q in res)
+        return 0, res
 
     def sol2(self, beginWord, endWord, wordList):
         tree, words, n = defaultdict(set), set(wordList), len(beginWord)
@@ -53,12 +55,15 @@ class _(Helpers) :
             q, nq = nq, set()
         def bt(x): 
             return [[x]] if x == endWord else [[x] + rest for y in tree[x] for rest in bt(y)]
-        return bt(beginWord)
+        res = bt(beginWord)
+        if len(res)>0:
+            return min(len(q) for q in res)
+        return 0, res
         
 class test(unittest.TestCase, _, Helpers):
     def test_(self):    
         for sol in [self.sol1, self.sol2]:
-            self.assertEqual(sol(beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]), [["hit","hot","dot","dog","cog"],["hit","hot","lot","log","cog"]])
+            self.assertEqual(sol(beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]), 5)
 
 
 if __name__ == "__main__":

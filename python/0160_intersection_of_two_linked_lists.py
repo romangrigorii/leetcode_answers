@@ -33,12 +33,34 @@ class _(Helpers) :
         while A!=B:
             A = A.next if A else headB
             B = B.next if B else headA
-        return A
+        if A != None: print(A.val)
+        return B
+
+    def sol2(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        a_set = set()
+        cur_a = headA
+        while cur_a:
+            a_set.add(cur_a)
+            cur_a = cur_a.next
+        
+        cur_b = headB
+        while cur_b:
+            if cur_b in a_set:
+                return cur_b
+            cur_b = cur_b.next
+        
+        return None
     
 class test(unittest.TestCase, _, Helpers):
     def test_(self):    
-        for sol in [self.sol1]:
-            self.assertEqual(self.convb(sol(self.convf([4,1,8,4,5]), self.convf([5,6,1,8,4,5]))), [8,4,5])
+        for sol in [self.sol1, self.sol2]:
+            a = self.convf([4,1,8,4,5])
+            b = self.convf([5,6,1,8,4,5])
+            btail = self.headat(b,2)
+            a_tail = self.headat(a,2)
+            btail.next = a_tail
+            s = sol(a, b)
+            self.assertEqual(self.convb(s), [8,4,5])
 
 if __name__ == "__main__":
     unittest.main()

@@ -18,7 +18,7 @@ class _(Helpers) :
 class test(unittest.TestCase, _, Helpers):
     def test_(self):    
         for sol in [self.sol1]:
-            self.assertEqual(sol(int(b'00000010100101000001111010011100')), int(b'00111001011110000010100101000000'))
+            self.assertEqual(sol(int(b'00000010100101000001111010011100', 2)), int(b'00111001011110000010100101000000', 2))
 
 if __name__ == "__main__":
     unittest.main()

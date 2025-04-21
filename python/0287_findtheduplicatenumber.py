@@ -1,6 +1,6 @@
 import unittest
 from typing import Optional, List
-from general.interview.leetcode.helpers import ListNode
+from helpers import ListNode
 
 class RemoveElement(ListNode):
     '''

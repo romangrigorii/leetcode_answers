@@ -7,7 +7,6 @@ class Maximum_Subarray():
     53: https://leetcode.com/problems/maximum-subarray
     Given an integer list nums, find the maximum value to which the subarrays can add to.
     '''
-    @staticmethod
     def sol1(self, nums: List[int]) -> int:
         '''
         This is Kadane's algorithm. The idea is that we add only parts of the array that would contribute positively to our overall sum.

@@ -26,7 +26,6 @@ class _ :
             if q == '..':
                 if paths_new: paths_new.pop()
             else: paths_new.append(q)
-        print(paths_new, paths)
         return '/' + "/".join(paths_new)
     
 class test(unittest.TestCase, _, Helpers):

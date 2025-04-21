@@ -37,7 +37,7 @@ class test(unittest.TestCase, _, Helpers):
     def test_(self):    
         for sol in [self.sol1, self.sol2]:
             self.assertEqual(self.tree_convb(sol(nums = [-10,-3,0,5,9])), [0, -10, 5, None, -3, None, 9])
-            self.assertEqual(self.tree_convb(sol(nums = [1,3])), [3,1])
+            self.assertEqual(self.tree_convb(sol(nums = [1,3])), [1, None, 3])
             
 
 

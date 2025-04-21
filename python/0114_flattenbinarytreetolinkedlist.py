@@ -28,6 +28,8 @@ class test(unittest.TestCase, _, Helpers):
         for sol in [self.sol1]:
             s = self.tree_convf([1,2,5,3,4,None,6])
             s.print_tree_stack()
+            s2 = sol(s)
+            s2.print_tree_stack()
             self.assertEqual(self.tree_convb(sol(s)), [1,None,2,None,3,None,4,None,5,None,6])
 
 

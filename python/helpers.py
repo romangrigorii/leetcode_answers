@@ -36,7 +36,6 @@ class TreeNode():
         return 1 + max(self.depth(treenode.left),self.depth(treenode.right))
     
     def print_tree_stack(self):
-        (l,r) = self.tree_width()        
         L = self.depth(self if isinstance(self, TreeNode) else self.root)
         lst = [[' ']*(2**L + 1) for q in range(L)]
         TreeNode.print_tree_helper_(self if isinstance(self, TreeNode) else self.root, lst, 0, L, int(2**(L-1)))
@@ -70,7 +69,11 @@ class Tree(TreeNode):
                 helper(tree.left, pos*2)
                 helper(tree.right, pos*2 + 1)
         helper(tree, 1)
-        while lst and lst[-1] == None: lst = lst[:-1] 
+        while lst and lst[-1] == None: lst = lst[:-1]
+        lst_remove = [] # removing extra Nones
+        for i in range(len(lst)):
+            if lst[(i-1)//2] == None: lst_remove.append(i)
+        lst = [lst[i] for i in range(len(lst)) if i not in lst_remove]
         return lst
     
 
@@ -134,6 +137,13 @@ class ListNode:
             ListNode = ListNode.next
         return q
 
+    @staticmethod
+    def headat(node, idx):
+        while node and idx:
+            node = node.next
+            idx -= 1
+        return node
+    
 class Helpers(ListNode, BST):
     def equal_lists(self, list1, list2): # marks two lists as equal if contain the same elements
         if len(list1)!=len(list2):
