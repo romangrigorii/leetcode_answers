@@ -1,6 +1,6 @@
 */other/
 */.gitignore
-*/C/functions/compiled/
+*/C/compiled/
 __pycache__/
 */bazel-bin/
 */bazel-cpp/
@@ -8,3 +8,6 @@ __pycache__/
 */bazel-testlogs/
 */MODULE.bazel.lock
 .idea
+C/leetcode.exe
+C/leetcodeTest.exe
+C/compiled/
