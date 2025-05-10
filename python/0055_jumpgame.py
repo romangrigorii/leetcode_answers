@@ -10,20 +10,14 @@ class _ :
     Return true if you can reach the last index, or false otherwise.
     '''
     def sol1(self, nums: List[int]) -> int: # this solution takes too long
-        if len(nums) <= 1: return True
-        if nums[0] == 0: return False
-        jumps = 0
-        curpos = 0
-        curmax = nums[0]
-        n = len(nums)
-        while curmax < (n-1):
-            curmax_ = curmax
-            for i in range(curpos, curmax+1):
-                if curmax < nums[i]+i:
-                    curmax = nums[i]+i
-            if curmax_ == curmax: return False
-            pos = curmax_
-        return True
+        out = [False]*len(nums)
+        out[0] = True
+        for i in range(len(nums)):
+            if not out[i]: return False
+            for k in range(1,nums[i]+1):
+                if i+k>=len(nums): return True
+                out[i+k] = True
+        return out[-1]
 
     def sol2(self, nums: List[int]) -> int:
         steps = 0
@@ -34,6 +28,13 @@ class _ :
                 steps = num
             steps -= 1
         return True
+    
+    def sol3(self, nums: List[int]) -> bool:
+        destination = len(nums) - 1
+        for i in range(destination - 1, -1, -1):
+            if( nums[i] + i >= destination):
+                destination = i        
+        return destination == 0
 
 class test(unittest.TestCase, _, Helpers):
     def test_(self):
