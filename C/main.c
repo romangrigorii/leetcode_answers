@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "functions/headers.h"
+#include "src/headers.h"
 #include <assert.h>
 
 void test_1_two_sum(){
