@@ -7,6 +7,12 @@ int main()
     
     // Run all test suites
     run_two_sum_tests();
+    run_add_two_numbers_tests();
+    run_longest_substring_tests();
+    run_median_sorted_arrays_tests();
+    run_longest_palindrome_tests();
+    run_zigzag_conversion_tests();
+    run_reverse_integer_tests();
     
     printf("All tests completed successfully!\n");
     return 0;
