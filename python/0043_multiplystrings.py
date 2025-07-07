@@ -24,6 +24,15 @@ class _ :
             product = product[1:]
         return ''.join(map(str, product))
 
+    def multiply2(self, num1: str, num2: str) -> str:
+        out = 0
+        for i, a in enumerate(reversed(num1)):
+            sofar = 0
+            for j, b in enumerate(reversed(num2)):
+                sofar += int(a)*int(b)*(10**j)
+            out+=sofar*(10**i)
+        return str(out)
+
 class test(unittest.TestCase, _ , Helpers):
     def test_(self):
         self.assertEqual(self.multiply('2', '3'), '6')

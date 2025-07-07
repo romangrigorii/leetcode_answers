@@ -20,7 +20,6 @@ class _ (ListNode):
                 nums[q] = nums[i]
                 q+=1
         return nums
-
             
  
 class test(unittest.TestCase, _ , Helpers):

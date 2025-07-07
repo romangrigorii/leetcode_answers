@@ -17,6 +17,54 @@ class _ (Helpers):
     Given an array of integers nums, find the next permutation of nums.
     The replacement must be in place and use only constant extra memory..
     '''
+    
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Find the next lexicographically greater permutation of nums.
+        
+        Algorithm:
+        1. Find the first decreasing element from the right (a[i] < a[i+1])
+        2. Find the first element greater than a[i] from the right
+        3. Swap these two elements
+        4. Reverse the subarray after position i
+        
+        Time Complexity: O(n)
+        Space Complexity: O(1) - in-place modification
+        """
+        n = len(nums)
+        if n <= 1:
+            return
+        
+        # Step 1: Find the first decreasing element from the right
+        # This is the element that can be increased to get the next permutation
+        i = n - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        
+        # If no decreasing element found, the array is in descending order
+        # Reverse it to get the smallest permutation (ascending order)
+        if i < 0:
+            nums.reverse()
+            return
+        
+        # Step 2: Find the first element greater than nums[i] from the right
+        # This element will be swapped with nums[i] to get the next permutation
+        j = n - 1
+        while j > i and nums[j] <= nums[i]:
+            j -= 1
+        
+        # Step 3: Swap the two elements
+        nums[i], nums[j] = nums[j], nums[i]
+        
+        # Step 4: Reverse the subarray after position i
+        # This ensures we get the smallest possible arrangement for the remaining elements
+        left = i + 1
+        right = n - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+    
     def sol1(self, nums: List[int]):
         l = 0
         r = len(nums)-1
@@ -64,15 +112,43 @@ class _ (Helpers):
         return nums
  
 class test(unittest.TestCase, _, Helpers):
-    def test_1(self):
-        self.assertEqual(self.sol1([1,2,3]), [1,3,2])
-        self.assertEqual(self.sol1([3,2,1]), [1,2,3])
-        self.assertEqual(self.sol1([1,1,5]), [1,5,1])
-    def test_2(self):
-        self.assertEqual(self.sol2([1,2,3]), [1,3,2])
-        self.assertEqual(self.sol2([3,2,1]), [1,2,3])
-        self.assertEqual(self.sol2([1,1,5]), [1,5,1])
-        self.assertEqual(self.sol2([1,4,3,2]), [2,1,3,4])
-        self.assertEqual(self.sol2([1,4,5,3,2]), [1,5,2,3,4])
+    def test_all_solutions(self):
+        # Define all test cases with input and expected output
+        test_cases = [
+            ([1, 2, 3], [1, 3, 2]),           # Normal case
+            ([3, 2, 1], [1, 2, 3]),           # Largest permutation -> smallest
+            ([1, 1, 5], [1, 5, 1]),           # Duplicate elements
+            ([1, 4, 3, 2], [2, 1, 3, 4]),     # More complex case
+            ([1, 4, 5, 3, 2], [1, 5, 2, 3, 4]), # Another complex case
+            ([1], [1]),                        # Single element
+            ([2, 1], [1, 2]),                 # Two elements
+            ([1, 2], [2, 1]),                 # Two elements ascending
+            ([1, 3, 2], [2, 1, 3]),           # Three elements
+            ([2, 3, 1], [3, 1, 2]),           # Three elements
+            ([1, 2, 3, 4], [1, 2, 4, 3]),     # Four elements
+            ([4, 3, 2, 1], [1, 2, 3, 4]),     # Four elements descending
+            ([1, 1, 1], [1, 1, 1]),           # All same elements
+            ([1, 2, 2], [2, 1, 2]),           # Duplicate elements
+            ([2, 2, 1], [1, 2, 2]),           # Duplicate elements at end
+        ]
+        
+        # Test all solutions with the same test cases
+        for input_nums, expected in test_cases:
+            with self.subTest(input_nums=input_nums, expected=expected):
+                # Test the main nextPermutation solution
+                nums1 = input_nums.copy()
+                self.nextPermutation(nums1)
+                self.assertEqual(nums1, expected, f"nextPermutation failed for {input_nums}")
+                
+                # Test sol1 solution
+                nums2 = input_nums.copy()
+                result2 = self.sol1(nums2)
+                self.assertEqual(result2, expected, f"sol1 failed for {input_nums}")
+                
+                # Test sol2 solution
+                nums3 = input_nums.copy()
+                result3 = self.sol2(nums3)
+                self.assertEqual(result3, expected, f"sol2 failed for {input_nums}")
+    
 if __name__ == "__main__":
     unittest.main()
