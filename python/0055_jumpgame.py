@@ -330,12 +330,12 @@ class test(unittest.TestCase, _, Helpers):
             # Alternating patterns
             ([1, 0, 1, 0, 1], False),
             ([2, 0, 2, 0, 2], True),
-            ([1, 1, 0, 1, 1], True),
+            ([1, 1, 0, 1, 1], False),
             
             # Boundary cases
             ([1, 0, 0, 0], False),
-            ([2, 0, 0, 0], True),
-            ([1, 1, 0, 0], True),
+            ([2, 0, 0, 0], False),
+            ([1, 1, 0, 0], False),
             ([1, 0, 1, 0], False),
             
             # Large arrays

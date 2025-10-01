@@ -1,14 +1,16 @@
 import pathlib, glob, os, re, subprocess
 cwd = os.getcwd()
-files = list(os.listdir(cwd))
-files = [file for file in list(os.listdir(cwd)) if re.match("[0-9]{4,4}",file)]
+files = [file for file in os.listdir(cwd) if re.match(r"[0-9]{4,4}.*\\.py$", file)]
+any_failed = False
 for file in files:
-    out = 0
-    with open(os.devnull, 'wb') as devnull:
-        try:
-            out = subprocess.check_call(['python3', file], stdout=devnull, stderr=subprocess.STDOUT)
-        except:
-            out += 1
-            print(f"{file} failed")
-if out==0:
-    print("Success! All tests pass.")
+    try:
+        subprocess.check_output(['python3', file], stderr=subprocess.STDOUT)
+        print(f"{file} ✓")
+    except subprocess.CalledProcessError as e:
+        any_failed = True
+        print(f"{file} ✗")
+        print(e.output.decode(errors='ignore'))
+if not any_failed:
+    print("All tests passed!")
+else:
+    print("Some tests failed.")

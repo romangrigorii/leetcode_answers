@@ -65,7 +65,11 @@ class _ (Helpers):
         Time Complexity: O(n log n) - divide and conquer
         Space Complexity: O(log n) - recursion stack depth
         """
+        if not nums:
+            return 0
         def maxSubArrayHelper(left, right):
+            if left > right:
+                return 0
             if left == right:
                 return nums[left]
             
